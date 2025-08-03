@@ -97,6 +97,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	//fmt.Println(file)
+
 	defer file.Close()
 
 }
