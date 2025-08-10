@@ -102,4 +102,8 @@ func main() {
 
 	defer file.Close()
 
+	for x := 50; x <= 100; x++ {
+		fmt.Println("num: ", x)
+	}
+
 }
