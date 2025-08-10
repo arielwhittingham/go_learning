@@ -33,9 +33,11 @@ import "fmt"
 package main
 
 import (
+	"encoding/csv"
 	"fmt"
 	"log"
 	"os"
+	"reflect"
 )
 
 func array_looper(arr []int, val int) {
@@ -91,6 +93,11 @@ func main() {
 	//	read and return from CSV
 	//
 
+	// how to use range
+	for x := 50; x <= 100; x++ {
+		fmt.Println("num: ", x)
+	}
+
 	file_name := "/Users/arielwhittingham/Downloads/customers-100_random_csv.csv"
 
 	file, err := os.Open(file_name)
@@ -102,8 +109,41 @@ func main() {
 
 	defer file.Close()
 
-	for x := 50; x <= 100; x++ {
-		fmt.Println("num: ", x)
+	// create a csv reader object
+
+	csvReader := csv.NewReader(file)
+
+	recordsInFile, err := csvReader.ReadAll()
+	if err != nil {
+		fmt.Println("can't read csv")
+		return
+	}
+
+	//var oneRecord []string
+
+	var wordCount map[string]int
+
+	// remove the unused variable error
+	if false {
+		wordCount["hello"] = 0
+	}
+
+	for i, record := range recordsInFile {
+		fmt.Println("index", i)
+
+		fmt.Println(reflect.TypeOf(record))
+
+		//if i == 1 {
+		//	oneRecord := record
+		//}
+
+		for e, val := range record {
+			fmt.Println(e, val)
+
+		}
+
+		// to do add these to a map and cunt the number of times each word appears
+
 	}
 
 }
